@@ -25,11 +25,12 @@ const App = () => (
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/study-buddy" element={<StudyBuddy />} />
             <Route path="/club-activities" element={<ClubActivities />} />
-            {/* Add paths for other features (simplified for now) */}
+            {/* Add paths for other features */}
             <Route path="/quiz" element={<StudyBuddy />} />
             <Route path="/attendance" element={<StudyBuddy />} />
             <Route path="/ranking" element={<StudyBuddy />} />
             <Route path="/games" element={<StudyBuddy />} />
+            <Route path="/marketplace" element={<StudyBuddy />} /> {/* Add marketplace route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

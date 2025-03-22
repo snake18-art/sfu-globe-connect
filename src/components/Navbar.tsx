@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Globe, Menu, X, Layout } from "lucide-react";
+import { Globe, Menu, X, Layout, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
@@ -17,7 +17,8 @@ const Navbar = () => {
     { name: "Quiz", path: "/quiz" },
     { name: "Attendance", path: "/attendance" },
     { name: "Ranking", path: "/ranking" },
-    { name: "Games", path: "/games" }
+    { name: "Games", path: "/games" },
+    { name: "Marketplace", path: "/marketplace", icon: <ShoppingCart className="w-4 h-4" /> }
   ];
 
   useEffect(() => {
@@ -58,13 +59,14 @@ const Navbar = () => {
               key={link.path}
               to={link.path}
               className={cn(
-                "px-3 py-2 rounded-md text-sm font-medium transition-all duration-200",
+                "px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-1",
                 location.pathname === link.path
                   ? "text-primary bg-primary/5"
                   : "text-foreground/70 hover:text-primary hover:bg-primary/5"
               )}
             >
               {link.name}
+              {link.icon && link.icon}
             </Link>
           ))}
         </nav>
@@ -93,13 +95,14 @@ const Navbar = () => {
                   key={link.path}
                   to={link.path}
                   className={cn(
-                    "px-4 py-3 rounded-md text-sm font-medium transition-all duration-200",
+                    "px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-2",
                     location.pathname === link.path
                       ? "text-primary bg-primary/5"
                       : "text-foreground/70 hover:text-primary hover:bg-primary/5"
                   )}
                 >
                   {link.name}
+                  {link.icon && link.icon}
                 </Link>
               ))}
             </nav>

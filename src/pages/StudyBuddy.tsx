@@ -1,11 +1,13 @@
 
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import { Search, Users, Filter, UserPlus, MessageSquare } from "lucide-react";
+import { Search, Users, Filter, UserPlus, MessageSquare, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Chat } from "@/components/messaging/Chat";
 
 const StudyBuddy = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeChat, setActiveChat] = useState<number | null>(null);
   
   const studyBuddies = [
     {
@@ -96,6 +98,26 @@ const StudyBuddy = () => {
             </button>
           </div>
         </div>
+
+        {/* Chat Modal */}
+        {activeChat !== null && (
+          <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
+            <div className="bg-white/10 dark:bg-black/50 backdrop-blur-md rounded-xl w-full max-w-2xl h-[600px] shadow-xl flex flex-col">
+              <div className="flex justify-between items-center p-4 border-b border-white/10">
+                <h2 className="font-semibold">Chat with {studyBuddies.find(b => b.id === activeChat)?.name}</h2>
+                <button 
+                  onClick={() => setActiveChat(null)}
+                  className="p-1 hover:bg-white/10 rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="flex-1 overflow-hidden">
+                <Chat />
+              </div>
+            </div>
+          </div>
+        )}
         
         {/* Study Buddies List */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -153,7 +175,10 @@ const StudyBuddy = () => {
                 <p className="text-sm text-muted-foreground mb-5">{buddy.bio}</p>
                 
                 <div className="flex gap-2">
-                  <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-primary text-white rounded-lg text-sm hover:bg-primary/90 transition-colors">
+                  <button 
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-primary text-white rounded-lg text-sm hover:bg-primary/90 transition-colors"
+                    onClick={() => setActiveChat(buddy.id)}
+                  >
                     <MessageSquare className="w-4 h-4" />
                     <span>Message</span>
                   </button>
