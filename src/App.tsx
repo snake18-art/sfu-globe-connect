@@ -8,8 +8,7 @@ import Index from "./pages/Index";
 import StudyBuddy from "./pages/StudyBuddy";
 import ClubActivities from "./pages/ClubActivities";
 import NotFound from "./pages/NotFound";
-
-// Let's install the needed dependency
+import Dashboard from "./pages/Dashboard";
 import { MotionConfig } from "framer-motion";
 
 const queryClient = new QueryClient();
@@ -23,6 +22,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/study-buddy" element={<StudyBuddy />} />
             <Route path="/club-activities" element={<ClubActivities />} />
             {/* Add paths for other features (simplified for now) */}
